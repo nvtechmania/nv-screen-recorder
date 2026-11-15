@@ -1,0 +1,47 @@
+{
+  "name": "nv-screen-recorder",
+  "version": "1.0.0",
+  "description": "NV Screen Recorder - lightweight screen, voice and mouse pointer recorder for Windows",
+  "main": "main.js",
+  "author": "NV Tech Mania",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.nvtechmania.nvscreenrecorder",
+    "productName": "NV Screen Recorder",
+    "copyright": "NV Tech Mania",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "artifactName": "NV-Screen-Recorder-Setup-${version}.${ext}",
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "shortcutName": "NV Screen Recorder"
+    },
+    "portable": {
+      "artifactName": "NV-Screen-Recorder-Portable-${version}.exe"
+    }
+  }
+}
